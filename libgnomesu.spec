@@ -3,13 +3,14 @@
 %define release %mkrel 5
 %define major 0
 %define libname %mklibname gnomesu %major
+%define libnamedev %mklibname -d gnomesu
 
 Summary: Library for accessing superuser privileges from GNOME
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-Patch0: libgnomesu-0.9.5-pam_stack.patch.bz2
+Patch0: libgnomesu-0.9.5-pam_stack.patch
 License: LGPL
 Group: System/Libraries
 Url: http://www.gnome.org
@@ -32,13 +33,14 @@ Requires: %name >= %version-%release
 libgnomesu is a library for providing superuser privileges to GNOME 
 applications. It supports sudo, consolehelper, PAM and su.
 
-%package -n %libname-devel
+%package -n %libnamedev
 Summary: Library for accessing superuser privileges from GNOME
 Group: Development/C
 Requires: %libname = %version-%release
 Provides: %name-devel = %version-%release
+Obsoletes: %mklibname -d gnomesu 0
 
-%description -n %libname-devel
+%description -n %libnamedev
 libgnomesu is a library for providing superuser privileges to GNOME 
 applications. It supports sudo, consolehelper, PAM and su.
 
@@ -77,9 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %libname
 %defattr(-,root,root)
-%_libdir/lib*.so.*
+%_libdir/libgnomesu.so.%{major}*
 
-%files -n %libname-devel
+%files -n %libnamedev
 %defattr(-,root,root)
 %_includedir/libgnomesu-1.0/
 %_libdir/pkgconfig/libgnomesu-1.0.pc
