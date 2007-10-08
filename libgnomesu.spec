@@ -1,6 +1,6 @@
 %define name libgnomesu
-%define version 0.9.5
-%define release %mkrel 5
+%define version 1.0.0
+%define release %mkrel 1
 %define major 0
 %define libname %mklibname gnomesu %major
 %define libnamedev %mklibname -d gnomesu
@@ -9,11 +9,11 @@ Summary: Library for accessing superuser privileges from GNOME
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.gz
 Patch0: libgnomesu-0.9.5-pam_stack.patch
 License: LGPL
 Group: System/Libraries
-Url: http://www.gnome.org
+Url: http://members.chello.nl/~h.lai/libgnomesu/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libgnomeui2-devel
 BuildRequires: pam-devel
