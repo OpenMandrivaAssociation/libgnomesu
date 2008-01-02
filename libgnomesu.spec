@@ -14,6 +14,7 @@ Patch0: libgnomesu-0.9.5-pam_stack.patch
 License: LGPL
 Group: System/Libraries
 Url: http://members.chello.nl/~h.lai/libgnomesu/
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libgnomeui2-devel
 BuildRequires: pam-devel
 Provides: gnomesu
