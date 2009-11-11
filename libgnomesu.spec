@@ -1,6 +1,6 @@
 %define name libgnomesu
 %define version 1.0.0
-%define release %mkrel 4
+%define release %mkrel 5
 %define major 0
 %define libname %mklibname gnomesu %major
 %define libnamedev %mklibname -d gnomesu
@@ -11,7 +11,8 @@ Version: %{version}
 Release: %{release}
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.gz
 Patch0: libgnomesu-0.9.5-pam_stack.patch
-License: LGPL
+Patch1:	libgnomesu-1.0.0-format-strings.patch
+License: LGPLv2+
 Group: System/Libraries
 Url: http://members.chello.nl/~h.lai/libgnomesu/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -47,6 +48,7 @@ applications. It supports sudo, consolehelper, PAM and su.
 %prep
 %setup -q
 %patch0 -p1 -b .pam_stack
+%patch1 -p1
 
 %build
 %configure2_5x --disable-setuid-error
