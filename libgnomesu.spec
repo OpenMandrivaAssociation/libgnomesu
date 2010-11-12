@@ -51,9 +51,7 @@ applications. It supports sudo, consolehelper, PAM and su.
 %setup -q
 %apply_patches
 intltoolize --force
-aclocal
-autoconf
-automake
+autoreconf -fi
 
 %build
 %configure2_5x --disable-setuid-error
