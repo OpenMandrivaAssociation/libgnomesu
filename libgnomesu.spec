@@ -19,6 +19,7 @@ Url: http://members.chello.nl/~h.lai/libgnomesu/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libgnomeui2-devel
 BuildRequires: pam-devel
+BuildRequires: intltool
 Provides: gnomesu
 Obsoletes: gnomesu
 
