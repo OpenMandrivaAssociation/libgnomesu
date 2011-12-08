@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT %name-1.0.lang
 %makeinstall_std
 %find_lang %name-1.0
 #fix libtool mess
-perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot/%_libdir/lib*.la
+perl -pi -e "s°-L%{_builddir}/%name-%version/src°°" %buildroot/%_libdir/lib*.la
 #gw fix perms for cpio
 chmod 755 %buildroot%_libexecdir/*
 
