@@ -1,6 +1,6 @@
 %define name libgnomesu
 %define version 1.0.0
-%define release %mkrel 8
+%define release %mkrel 9
 %define major 0
 %define libname %mklibname gnomesu %major
 %define libnamedev %mklibname -d gnomesu
