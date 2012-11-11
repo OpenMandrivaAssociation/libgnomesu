@@ -1,0 +1,11 @@
+diff -p -up libgnomesu-1.0.0/src/Makefile.am~ libgnomesu-1.0.0/src/Makefile.am
+--- libgnomesu-1.0.0/src/Makefile.am~	2005-02-13 14:29:53.000000000 +0100
++++ libgnomesu-1.0.0/src/Makefile.am	2010-11-12 10:43:52.000000000 +0100
+@@ -8,7 +8,6 @@ INCLUDES=\
+ 	-DLIBEXECDIR="\"$(libexecdir)\""\
+ 	-DGETTEXT_PACKAGE="\"$(GETTEXT_PACKAGE)\""\
+ 	-DG_DISABLE_DEPRECATED\
+-	-DGTK_DISABLE_DEPRECATED\
+ 	-DGLADEDIR="\"$(pkgdatadir)/glade\""
+ 
+ libgnomesu_la_SOURCES =\

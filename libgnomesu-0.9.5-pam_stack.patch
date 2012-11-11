@@ -1,0 +1,11 @@
+--- libgnomesu-0.9.5/pam-backend/gnomesu-pam.pam_stack	2003-09-20 13:19:24.000000000 +0200
++++ libgnomesu-0.9.5/pam-backend/gnomesu-pam	2006-01-30 23:20:49.000000000 +0100
+@@ -1,7 +1,7 @@
+ #%PAM-1.0
+ auth       sufficient   pam_rootok.so
+ auth       sufficient   pam_timestamp.so
+-auth       required     pam_stack.so service=system-auth
++auth       include      system-auth
+ session    required     pam_permit.so
+ session    required     pam_xauth.so
+ session    optional     pam_timestamp.so
