@@ -16,7 +16,6 @@ Patch2: libgnomesu-1.0.0-deprecated.patch
 License: LGPLv2+
 Group: System/Libraries
 Url: http://members.chello.nl/~h.lai/libgnomesu/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: libgnomeui2-devel
 BuildRequires: pam-devel
 BuildRequires: intltool
@@ -58,21 +57,11 @@ autoreconf -fi
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT %name-1.0.lang
+rm -rf %{buildroot} %name-1.0.lang
 %makeinstall_std
 %find_lang %name-1.0
 #gw fix perms for cpio
-chmod 755 %buildroot%_libexecdir/*
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
-%endif
+chmod 755 %{buildroot}%_libexecdir/*
 
 %files -f %name-1.0.lang
 %defattr(-,root,root)
@@ -93,3 +82,62 @@ rm -rf $RPM_BUILD_ROOT
 %_includedir/libgnomesu-1.0/
 %_libdir/pkgconfig/libgnomesu-1.0.pc
 %_libdir/lib*.so
+
+
+%changelog
+* Tue Feb 21 2012 Jon Dill <dillj@mandriva.org> 1.0.0-9mdv2012.0
++ Revision: 778799
+- rebuild against new version of libffi4
+
+* Wed Nov 16 2011 Götz Waschk <waschk@mandriva.org> 1.0.0-8
++ Revision: 731092
+- rebuild
+- rebuild
+- fix build
+
+* Wed Nov 11 2009 Götz Waschk <waschk@mandriva.org> 1.0.0-5mdv2010.1
++ Revision: 464603
+- fix format strings
+- update license
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Fri Jul 25 2008 Thierry Vignaud <tv@mandriva.org> 1.0.0-3mdv2009.0
++ Revision: 248721
+- rebuild
+- kill re-definition of %{buildroot} on Pixel's request
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Mon Oct 08 2007 Götz Waschk <waschk@mandriva.org> 1.0.0-1mdv2008.1
++ Revision: 95685
+- new version
+- fix URL
+
+* Thu Aug 02 2007 Götz Waschk <waschk@mandriva.org> 0.9.5-5mdv2008.0
++ Revision: 57988
+- unpack patch
+- new devel name
+- Import libgnomesu
+
+
+
+* Tue Aug 01 2006 Frederic Crozat <fcrozat@mandriva.com> 0.9.5-5mdv2007.0
+- Rebuild with latest dbus
+
+* Thu Jul 20 2006 Götz Waschk <waschk@mandriva.org> 0.9.5-1mdv2007.0
+- Rebuild
+
+* Mon Jan 30 2006 Olivier Blin <oblin@mandriva.com> 0.9.5-3mdk
+- use "include" directive instead of deprecated pam_stack (Patch0)
+
+* Mon Mar 14 2005 G�tz Waschk <waschk@linux-mandrake.com> 0.9.5-2mdk
+- provide and obsolete gnomesu
+
+* Wed Jan 12 2005 G�tz Waschk <waschk@linux-mandrake.com> 0.9.5-1mdk
+- initial package
