@@ -5,44 +5,44 @@
 %define libname %mklibname gnomesu %major
 %define libnamedev %mklibname -d gnomesu
 
-Summary: Library for accessing superuser privileges from GNOME
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.gz
-Patch0: libgnomesu-0.9.5-pam_stack.patch
-Patch1:	libgnomesu-1.0.0-format-strings.patch
-Patch2: libgnomesu-1.0.0-deprecated.patch
-License: LGPLv2+
-Group: System/Libraries
-Url: http://members.chello.nl/~h.lai/libgnomesu/
-BuildRequires: libgnomeui2-devel
-BuildRequires: pam-devel
-BuildRequires: intltool
-Provides: gnomesu
-Obsoletes: gnomesu
+Summary:	Library for accessing superuser privileges from GNOME
+Name:		libgnomesu
+Version:	1.0.0
+Release:	10
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.gz
+Patch0:		libgnomesu-0.9.5-pam_stack.patch
+Patch1:		libgnomesu-1.0.0-format-strings.patch
+Patch2:		libgnomesu-1.0.0-deprecated.patch
+License:	LGPLv2+
+Group:		System/Libraries
+Url:		http://members.chello.nl/~h.lai/libgnomesu/
+BuildRequires:	libgnomeui2-devel
+BuildRequires:	pam-devel
+BuildRequires:	intltool
+Provides:	gnomesu = %{version}-%{release}
+Obsoletes:	gnomesu < %{version}-%{release}
 
 %description
 libgnomesu is a library for providing superuser privileges to GNOME 
 applications. It supports sudo, consolehelper, PAM and su.
 
-%package -n %libname
-Summary: Library for accessing superuser privileges from GNOME
-Group: System/Libraries
-Requires: %name >= %version-%release
+%package -n %{libname}
+Summary:	Library for accessing superuser privileges from GNOME
+Group:		System/Libraries
+Requires:	%{name} >= %{version}-%{release}
 
-%description -n %libname
+%description -n %{libname}
 libgnomesu is a library for providing superuser privileges to GNOME 
 applications. It supports sudo, consolehelper, PAM and su.
 
-%package -n %libnamedev
-Summary: Library for accessing superuser privileges from GNOME
-Group: Development/C
-Requires: %libname = %version-%release
-Provides: %name-devel = %version-%release
-Obsoletes: %mklibname -d gnomesu 0
+%package -n %{libnamedev}
+Summary:	Library for accessing superuser privileges from GNOME
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%mklibname -d gnomesu 0
 
-%description -n %libnamedev
+%description -n %{libnamedev}
 libgnomesu is a library for providing superuser privileges to GNOME 
 applications. It supports sudo, consolehelper, PAM and su.
 
@@ -53,7 +53,9 @@ intltoolize --force
 autoreconf -fi
 
 %build
-%configure2_5x --disable-setuid-error
+%configure2_5x \
+		--disable-setuid-error
+
 %make
 
 %install
@@ -64,24 +66,23 @@ rm -rf %{buildroot} %name-1.0.lang
 chmod 755 %{buildroot}%_libexecdir/*
 
 %files -f %name-1.0.lang
-%defattr(-,root,root)
 %doc README ChangeLog NEWS TODO AUTHORS
 %config(noreplace) %_sysconfdir/pam.d/gnomesu-pam
-%_bindir/gnomesu
-%_datadir/application-registry/gnomesu-nautilus.applications
-%_datadir/mime-info/gnomesu-nautilus.keys
+%{_bindir}/gnomesu
+%{_datadir}/application-registry/gnomesu-nautilus.applications
+%{_datadir}/mime-info/gnomesu-nautilus.keys
 %attr(4111,root,root) %_libexecdir/gnomesu-backend
 %attr(4111,root,root) %_libexecdir/gnomesu-pam-backend
 
 %files -n %libname
 %defattr(-,root,root)
-%_libdir/libgnomesu.so.%{major}*
+%{_libdir}/libgnomesu.so.%{major}*
 
 %files -n %libnamedev
 %defattr(-,root,root)
-%_includedir/libgnomesu-1.0/
-%_libdir/pkgconfig/libgnomesu-1.0.pc
-%_libdir/lib*.so
+%{_includedir}/libgnomesu-1.0/
+%{_libdir}/pkgconfig/libgnomesu-1.0.pc
+%{_libdir}/lib*.so
 
 
 %changelog
@@ -89,13 +90,13 @@ chmod 755 %{buildroot}%_libexecdir/*
 + Revision: 778799
 - rebuild against new version of libffi4
 
-* Wed Nov 16 2011 Götz Waschk <waschk@mandriva.org> 1.0.0-8
+* Wed Nov 16 2011 GÃ¶tz Waschk <waschk@mandriva.org> 1.0.0-8
 + Revision: 731092
 - rebuild
 - rebuild
 - fix build
 
-* Wed Nov 11 2009 Götz Waschk <waschk@mandriva.org> 1.0.0-5mdv2010.1
+* Wed Nov 11 2009 GÃ¶tz Waschk <waschk@mandriva.org> 1.0.0-5mdv2010.1
 + Revision: 464603
 - fix format strings
 - update license
@@ -114,12 +115,12 @@ chmod 755 %{buildroot}%_libexecdir/*
   + Olivier Blin <blino@mandriva.org>
     - restore BuildRoot
 
-* Mon Oct 08 2007 Götz Waschk <waschk@mandriva.org> 1.0.0-1mdv2008.1
+* Mon Oct 08 2007 GÃ¶tz Waschk <waschk@mandriva.org> 1.0.0-1mdv2008.1
 + Revision: 95685
 - new version
 - fix URL
 
-* Thu Aug 02 2007 Götz Waschk <waschk@mandriva.org> 0.9.5-5mdv2008.0
+* Thu Aug 02 2007 GÃ¶tz Waschk <waschk@mandriva.org> 0.9.5-5mdv2008.0
 + Revision: 57988
 - unpack patch
 - new devel name
@@ -130,14 +131,14 @@ chmod 755 %{buildroot}%_libexecdir/*
 * Tue Aug 01 2006 Frederic Crozat <fcrozat@mandriva.com> 0.9.5-5mdv2007.0
 - Rebuild with latest dbus
 
-* Thu Jul 20 2006 Götz Waschk <waschk@mandriva.org> 0.9.5-1mdv2007.0
+* Thu Jul 20 2006 GÃ¶tz Waschk <waschk@mandriva.org> 0.9.5-1mdv2007.0
 - Rebuild
 
 * Mon Jan 30 2006 Olivier Blin <oblin@mandriva.com> 0.9.5-3mdk
 - use "include" directive instead of deprecated pam_stack (Patch0)
 
-* Mon Mar 14 2005 G�tz Waschk <waschk@linux-mandrake.com> 0.9.5-2mdk
+* Mon Mar 14 2005 Götz Waschk <waschk@linux-mandrake.com> 0.9.5-2mdk
 - provide and obsolete gnomesu
 
-* Wed Jan 12 2005 G�tz Waschk <waschk@linux-mandrake.com> 0.9.5-1mdk
+* Wed Jan 12 2005 Götz Waschk <waschk@linux-mandrake.com> 0.9.5-1mdk
 - initial package
