@@ -1,6 +1,6 @@
 %define name libgnomesu
 %define version 1.0.0
-%define release %mkrel 9
+%define release  10
 %define major 0
 %define libname %mklibname gnomesu %major
 %define libnamedev %mklibname -d gnomesu
@@ -8,7 +8,7 @@
 Summary:	Library for accessing superuser privileges from GNOME
 Name:		libgnomesu
 Version:	1.0.0
-Release:	10
+Release:	11
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.gz
 Patch0:		libgnomesu-0.9.5-pam_stack.patch
 Patch1:		libgnomesu-1.0.0-format-strings.patch
