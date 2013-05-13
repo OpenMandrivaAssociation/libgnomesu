@@ -16,7 +16,7 @@ Patch2:		libgnomesu-1.0.0-deprecated.patch
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://members.chello.nl/~h.lai/libgnomesu/
-BuildRequires:	libgnomeui2-devel
+BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pam-devel
 BuildRequires:	intltool
 Provides:	gnomesu = %{version}-%{release}
