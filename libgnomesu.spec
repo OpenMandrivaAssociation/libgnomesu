@@ -7,7 +7,7 @@
 Summary:	Library for accessing superuser privileges from GNOME
 Name:		libgnomesu
 Version:	1.0.0
-Release:	14
+Release:	15
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://members.chello.nl/~h.lai/libgnomesu/
