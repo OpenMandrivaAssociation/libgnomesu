@@ -46,7 +46,7 @@ applications. It supports sudo, consolehelper, PAM and su.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 intltoolize --force
 autoreconf -fi
 
