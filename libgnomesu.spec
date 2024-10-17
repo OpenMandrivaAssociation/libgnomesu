@@ -10,7 +10,7 @@ Version:	1.0.0
 Release:	15
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://members.chello.nl/~h.lai/libgnomesu/
+Url:		https://members.chello.nl/~h.lai/libgnomesu/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/libgnomesu/%{url_ver}/%{name}-%{version}.tar.gz
 Patch0:		libgnomesu-0.9.5-pam_stack.patch
 Patch1:		libgnomesu-1.0.0-format-strings.patch
